@@ -1,0 +1,53 @@
+    <title></title>
+    <!-- Start: MAIN CONTENT -->
+      <div class="container">
+        <div class="page-header">
+        </div>
+        <div class="row">
+          <div class="span6 offset3">
+            <h4 class="widget-header"><i class="icon-gift"></i> Easy Sign Up!</h4>
+            <div class="widget-body">
+              <div class="center-align">
+        <h4><i class="icon-thumbs-up"></i> Sign Up using social networking login</h4>
+                <ul class="signin-with-list">
+                
+                  <li>
+                      <%= link_to 'Facebook', user_omniauth_authorize_path(:facebook), :class =>'btn-facebook',target: '_blank' %>
+                   
+                       <%= link_to 'Google', user_omniauth_authorize_path(:google_oauth2), :class =>'btn-google', target: '_blank' %>
+       
+                       
+                  </li>
+                </ul>
+                <div class="panel panel-warning">
+                
+                <div class="panel-body">
+                  *We never share user account information with others. We never post user activity into social networking sites without your consent. <br>
+            
+                </div>
+                </div>
+              <%= form_for @user,:html => {:class =>"form-horizontal form-signin-signup"} do |f| %>
+               <%= render 'shared/error_messages', :object => f.object %>
+      <%= f.text_field :name, :placeholder => 'Name' %>
+      <%= f.text_field :email, :placeholder =>'Email' %>
+      <%= f.password_field :password, :placeholder =>'Password'%>
+      <%= f.password_field :password_confirmation, :placeholder =>'Confirmation' %><br>
+
+      <%= f.submit "Create my account", class: "btn btn-large btn-primary" %>
+    <% end %>               
+                <h4><i class="icon-question-sign"></i> Have an account already?</h4>
+        <%= link_to "Signin",new_user_session_path, :class =>'btn btn-large btn-primary' %><br>
+                       
+ <div class="panel panel-warning">
+                
+                <div class="panel-body">
+                  **You can link twitter account after signup. You can use the authorization for subsequent logins <br>
+            
+                </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    <!-- End: MAIN CONTENT -->

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Kampusbee.com | Stay informed! ">
+    <meta name="author" content="Narendra">
+    <title>Kampusbee.com</title>
+    <!-- Bootstrap -->
+     <%= stylesheet_link_tag  "application" %>    
+     <!%= stylesheet_link_tag  "bootstrap.min" %>
+    <%= stylesheet_link_tag  "bootstrap-responsive.min" %>
+    <%= stylesheet_link_tag  "font-awesome.min" %>
+    <%= stylesheet_link_tag  "font-awesome-ie7" %>
+    <%= stylesheet_link_tag  "boot-business" %>
+    <%= stylesheet_link_tag  "jquery.jquerytour" %>
+    <!%= stylesheet_link_tag  "jquery-ui" %> 
+    <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+     <%= javascript_include_tag "jquery-ui.min.js" %>
+     <!%= javascript_include_tag :defaults %>     
+    <%= csrf_meta_tags %>
+          
+<%= render 'layouts/shim' %>
+</head>
+<body>
+<div id="bbb">
+  <a href="<%=root_path%>">Alpha Release</a>
+</div> 
+ <div id="feedback">
+ <p class="tour_10"></p>
+  <a href="<%=new_contact_form_path%>">Feedback</a>
+</div> 
+
+<!---
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_GB/all.js#xfbml=1&appId=235140026659021";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script> --->
+
+ <%= render 'layouts/header' %> 
+<%= render partial: "shared/flash_messages", flash: flash %>
+ 
+   <%= yield %>
+    <script type="text/javascript" language="javascript" charset="utf-8">
+   // <![CDATA[
+          $('[data-toggle="popover"]').popover({trigger: 'hover'});
+   // ]]>
+   </script> 
+   <%= render 'layouts/footer' %>
+    
+    
+   <%= debug(params) if Rails.env.development? %>
+
+  </body>
+</html>

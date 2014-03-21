@@ -1,0 +1,40 @@
+    <title></title>
+      <div class="container">
+        <div class="row">
+          <div class="span6 offset3">
+            <h4 class="widget-header"><i class="icon-lock"></i> Login </h4>
+            <div class="widget-body">
+              <div class="center-align">
+              <h4><i class="icon-thumbs-up"></i> Sign in with third party account</h4>
+                <ul class="signin-with-list">
+                  <li>
+                      <%= link_to 'Facebook Login', user_omniauth_authorize_path(:facebook), :class =>'btn-facebook',target: '_blank' %>
+
+ <%= link_to 'Google Login', user_omniauth_authorize_path(:google_oauth2), :class =>'btn-google', target: '_blank' %>
+             <%= link_to 'Twitter Login', user_omniauth_authorize_path(:twitter), :class =>'btn-twitter', target: '_blank' %>                        
+                  </li>
+                </ul>
+                    
+          <div class="panel panel-warning">
+                
+                <div class="panel-body">
+                  *We never share user account information with others. We never post user activity into social networking sites without your consent. <br>
+            **You can't sign up using twitter account. You can link the account after signup.   
+                </div>
+                </div>
+     <%= form_for(resource, :as => resource_name, :url => session_path(resource_name), :html => {:class =>"form-horizontal form-signin-signup"}) do |f| %>
+       <%= f.text_field :email, :placeholder => 'Email' %>
+       <%= f.password_field :password, :placeholder => 'Password' %><br>
+  <% if devise_mapping.rememberable? -%>
+  <%= f.label :remember_me, 'Stay signed in' %>
+   <%= f.check_box :remember_me, :class => 'center' %><br>
+  <% end -%>
+      <%= f.submit "Sign in", class: "btn btn-medium btn-primary" %>
+      <% end %>
+  <%= render "devise/shared/links" %>
+              </div>      
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>

@@ -1,0 +1,74 @@
+    <title></title>
+    <!-- Start: MAIN CONTENT -->
+      <div class="container">
+        <div class="page-header">
+          <h1>Edit your profile!</h1>
+        </div>
+        
+        <h2 id="nav-tabs"></h2>
+   <ul class="nav nav-tabs">
+    <li class="active"><a href="#first" data-toggle="tab">Link your account</a></li>
+     <li><a href="#second" data-toggle="tab">Edit your profile</a></li>
+     </ul>
+             
+   <div id="myTabContent" class="tab-content">
+<div class="tab-pane fade active in" id="first">
+<div class="well">
+        <div class="row">  
+        <div class="col-lg-1">
+        </div>       
+          <div class="col-lg-6">
+          <legend>Link Your Accounts</legend>
+          <% if @auth.where('provider'=>'facebook').present?%>
+            <b>Facebook Linked</b><br>
+            <% else %>
+            <%= link_to 'Facebook Login', user_omniauth_authorize_path(:facebook), :class =>'btn btn-info',target: '_blank' %><br>
+            <% end %>
+            <% if @auth.where('provider'=>'google_oauth2').present?%>
+            <b>Gmail Linked</b><br>
+            <% else %>
+            <%= link_to 'Google Login', user_omniauth_authorize_path(:google_oauth2), :class =>'btn btn-primary', target: '_blank' %><br>
+            <% end %>
+            <% if @auth.where('provider'=>'twitter').present?%>
+            <b>Twitter Linked</b><br>
+            <% else %>
+            <%= link_to 'Twitter Login', user_omniauth_authorize_path(:twitter), :class =>'btn btn-primary', target: '_blank' %><br>
+            <% end %> <br>
+            </div>
+            <div class="col-lg-5">
+            <div class="panel panel-warning">
+                
+                <div class="panel-body">
+                 
+                  * We never share the account information with others.<br>
+            ** User activity will never be posted into social networking sites without users' consent.   
+                </div>
+              </div> 
+          </div>
+          </div>
+          </div>
+</div>
+<div class="tab-pane fade" id="second"><div class="well">
+        <div class="row">  
+        <div class="col-lg-1">
+        </div>       
+          <div class="col-lg-6">
+          <legend>Edit your profile</legend>
+          <%= form_for @user,:html => {:class =>"form-horizontal form-signin-signup"} do |f| %>
+               <%= render 'shared/error_messages', :object => f.object %>
+      <%= f.text_field :name, :placeholder => 'Name' %>
+      <%= f.text_field :email, :placeholder =>'Email' %>
+      <%= f.password_field :password, :placeholder =>'Password'%>
+      <%= f.password_field :password_confirmation, :placeholder =>'Confirmation' %><br>
+         <%= f.submit "Update", class: "btn btn-large btn-primary" %> 
+          <% end %>   
+          </div>
+          </div>
+          </div>
+
+
+</div>       
+              
+      </div>
+      </div>
+    <!-- End: MAIN CONTENT -->

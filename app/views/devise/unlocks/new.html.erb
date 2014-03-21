@@ -1,0 +1,29 @@
+
+<title></title>
+    <!-- Start: MAIN CONTENT -->
+    <div class="content">
+      <div class="container">
+        <div class="page-header">
+          <h1>Resend unlock instructions</h1>
+        </div>
+        <div class="row">
+          <div class="span6 offset3">
+            <h4 class="widget-header"><i class="icon-gift"></i> Be a part of CampusBuzz</h4>
+            <div class="widget-body">
+              <div class="center-align">
+<%= form_for(resource, :as => resource_name, :url => unlock_path(resource_name), :html => { :method => :post }) do |f| %>
+  <%= devise_error_messages! %>
+
+  <div><%= f.label :email %><br />
+  <%= f.email_field :email, :autofocus => true %></div>
+
+  <div><%= f.submit "Resend unlock instructions" %></div>
+<% end %>
+</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+<%= render "devise/shared/links" %>

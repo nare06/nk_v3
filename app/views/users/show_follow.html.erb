@@ -1,0 +1,34 @@
+<title></title>
+<div class="container">
+<legend><%= @user.name %></legend>
+<div class="row">
+  <div class="col-lg-4">     
+      <% if @user.avatar.present?%>
+                         <% img = @user.avatar.url%>
+                        <%= image_tag @user.avatar.url, :size => '150x150' %>
+                        <% else %>
+                        <% img = 'thumb_default.png'%>
+                        <%= image_tag 'thumb_default.png', :size => '150x150' %>
+                        <% end %>
+     </div>
+     <div class="col-lg-4">
+      <span><%= link_to "view my profile", @user %></span>
+      <span><b>Posts:</b> <%= @user.microposts.count %></span>
+    
+    
+      <%= render 'shared/stats' %>
+
+    </div>
+  <div class="col-lg-4">
+    <h3><%= @title %></h3>
+    <% if @users.any? %>
+      <ul class="users">
+        <%= render @users %>
+      </ul>
+      <%= will_paginate %>
+    <% end %>
+  </div>
+</div>
+</div>
+
+

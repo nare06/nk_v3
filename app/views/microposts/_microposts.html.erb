@@ -1,0 +1,11 @@
+
+<% @microposts.each do |microposts| %>
+
+   <b><%=microposts.content %></b>
+   
+   Posted <%= time_ago_in_words(microposts.created_at) %> ago.
+
+<br>
+<br>
+<% end %>
+

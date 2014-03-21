@@ -1,0 +1,153 @@
+   <title>   </title> 
+   <script>
+    $(window).bind("load", function() {
+       $.getScript('<%= asset_path('social.js') %>', function() {});
+    });
+</script>   
+    <!-- Start: MAIN CONTENT -->
+    <div class="container">
+    
+    <div class = "jumbotron">
+      <div class="row">
+      
+    <div class="col-lg-6">
+    <h2 class="tour_1" style='font-family: color: #666;font-style: italic;font-size: 30px;' >Stay notified about what's hot inside the campus!</h2>
+    <h4 style='font-family: color: #666;font-style: italic;font-size: 20px;' >Here User is a promoter!</h4> 
+   <% if signed_in?%>
+    <a class="btn btn-primary btn-md" href="<%=addevent_path%>">Add an Event. It's fun :)</a>
+    <%else%>
+    <a class="btn btn-primary btn-md" href="<%=addevent_path%>">Add an Event. It's easy.</a>
+    <%end%>
+    <!---<div class="fb-like-box" data-href="http://www.facebook.com/Kampusbeecom" data-colorscheme="light" data-show-faces="true" data-header="true" data-stream="false" data-show-border="true"></div>--->
+    </div>  
+    <div class="col-lg-6">    
+   	
+    <%= render partial: 'static_pages/slider'%> 
+    <div class="tour_9"></div>
+    <%= javascript_include_tag "slider.js" %>  
+    </div>
+    </div>
+</div>
+    <div class="row"> 
+ 
+      <!-- End: slider -->
+      <!-- Start: PRODUCT LIST --> 
+   
+<h2 class="tour_2" id="nav-tabs"></h2>
+ <ul class="nav nav-tabs">
+ <% if signed_in? %>
+<li class="active"><a href="#all" data-toggle="tab">All Events<span class="badge"><%=@events.count%></span></a></li>
+<li><a href="#first" data-toggle="tab">Campus Events<span class="badge"><%=@tab1.count%></span></a></li>
+<li><a href="#second" data-toggle="tab">Hall Events <span class="badge"><%=@tab2.count%></span></a></li>
+<li><a href="#third" data-toggle="tab">My Events<span class="badge"><%=@tab3.count%></span></a></li>
+<li><a href="#fourth" data-toggle="tab">My favorites<span class="badge"><%=@tab4.count%></span></a></li>
+<li><a href="#fifth" data-toggle="tab">Trending<span class="badge"><%=@tab5.count%></span></a></li>
+<li><a href="#sixth" data-toggle="tab">Bee Feed<span class="badge"><%=@tab6.count%></span></a></li>
+<li><a href="#seventh" data-toggle="tab">Created Events<span class="badge"><%=@tab7.count%></span></a></li>
+<% else %>
+<li class="active"><a href="#all" data-toggle="tab">All Events<span class="badge"><%=@events.count%></span></a></li>
+<li><a href="#first" data-toggle="tab">Campus Events<span class="badge"><%=@tab1.count%></span></a></li>
+<li><a href="#second" data-toggle="tab">Hall Events <span class="badge"><%=@tab2.count%></span></a></li>
+<li><a href="#fifth" data-toggle="tab">Trending<span class="badge"><%=@tab5.count%></span></a></li>
+<% end %>
+</ul>
+ <div class="col-lg-2">
+    <br>
+
+  
+    <div class="list-group">
+  <a href="<%= sort_path(:num => 0)%>" class="list-group-item">
+    Today
+  </a>
+  <a href="<%=sort_path(:num => 1)%>" class="list-group-item">Tomorrow
+  </a>
+  <a href="<%=sort_path(:week => 7)%>" class="list-group-item">This Week
+  </a>
+  <a href="<%=sort_path(:month => 7)%>" class="list-group-item">This Month
+  </a>
+ 
+</div>
+<div class="well">
+<legend><div class="tour_8"></div>Filter by Date</legend>
+<%= form_tag sort_path, :method => :get do %>
+ <%= select_date(date = Date.current, order: [:day, :month, :year]) %>
+<%=submit_tag ">"%>
+
+   <% end %>
+
+   </div>
+   <div class="well">
+<legend>Filter by </legend>
+<%= form_tag refresh_path, :method => :get do %>
+<div class="form-group">
+   <%= select("category", "category_id",Category.all.collect {|p| [ p.name, p.id ] }, {include_blank: 'Fill Category'},{class: "form-control"}) %>
+   
+   <%= select("domain", "domain_id", Domain.all.collect {|p| [ p.name, p.id ] }, {include_blank: 'Fill Domain'},{class: "form-control"}) %>
+   
+   <%= select("eligible", "eligible_id", Eligible.all.collect {|p| [ p.name, p.id ] }, {include_blank: 'Fill Eligible'},{class: "form-control"}) %>
+   
+   <%=submit_tag "Filter"%>
+   <% end %> 
+   </div>
+   </div>
+</div>
+
+    <div class="col-lg-10">
+ <div id="myTabContent" class="tab-content eventstr">
+<% if signed_in? %>
+<div class="tab-pane fade active in" id="all">
+<%= render partial: "static_pages/event", collection: @events %>
+</div>
+<div class="tab-pane fade" id="first">
+<%= render partial: "static_pages/event", collection: @tab1 %> 
+</div>
+<div class="tab-pane fade" id="second">
+<%= render partial: "static_pages/event", collection: @tab2%>        
+</div>
+<div class="tab-pane fade" id="third">
+<%= render partial: "static_pages/event", collection: @tab3 %>        
+</div>
+<div class="tab-pane fade" id="fourth">
+
+<%= render partial: "static_pages/event", collection: @tab4 %>        
+</div>
+<div class="tab-pane fade" id="fifth">
+<%= render partial: "static_pages/event", collection: @tab5 %>        
+</div>
+<div class="tab-pane fade" id="sixth">
+<%= render partial: "static_pages/event", collection: @tab6 %>        
+</div>
+<div class="tab-pane fade" id="seventh">
+<%= render partial: "static_pages/event", collection: @tab7 %>        
+</div>
+<%else%>
+<div class="tab-pane fade active in" id="all">
+<%= render partial: "static_pages/event", collection: @events %>
+</div>
+<div class="tab-pane fade" id="first">
+<%= render partial: "static_pages/event", collection: @tab1 %>        
+</div>
+<div class="tab-pane fade" id="second">
+<%= render partial: "static_pages/event", collection: @tab2 %>        
+</div>
+<div class="tab-pane fade" id="fifth">
+<%= render partial: "static_pages/event", collection: @tab5 %>        
+</div>
+<%end%>
+</div>
+</div>
+</div>
+</div>
+<%= render partial: "static_pages/tour" %>
+ 
+
+<script type="text/javascript" language="javascript" charset="utf-8">
+var created_at = <%= Time.now.to_i %>;
+window.setInterval(function(){
+  $.get('<%= new_events_path %>', {created_at: created_at});
+}, 10000);
+</script>
+  
+   
+   
+    <!-- End: MAIN CONTENT -->

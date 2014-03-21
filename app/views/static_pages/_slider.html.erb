@@ -1,0 +1,39 @@
+<title></title>
+<!%= stylesheet_link_tag  "global.css" %>
+<%= javascript_include_tag "jquery.slides.min.js" %>
+
+ <div id="container">
+		<div id="slides">
+		<figure>
+	<%=image_tag "slider-1.jpg", size: "510x205"%>
+	<figcaption>
+
+	  <%= Event.first.title %>
+	   <%= Event.first.venue %>|<%=Event.first.sdatetime.strftime("%B %d")%>
+	</figcaption>
+	</figure>
+	<figure>
+	<%=image_tag "slider-2.jpg", size: "510x205"%>
+	<figcaption>
+	 <strong> <%= Event.last.title %></strong>
+	   <%= Event.last.venue %>|<%=Event.first.sdatetime.strftime("%B %d")%>
+	</figcaption>
+	</figure>
+	<figure>
+	<%=image_tag "slider-4.jpg", size: "510x205"%>
+	<figcaption>
+	  <%= Event.first.title %>
+	   <%= Event.first.venue %>|<%=Event.first.sdatetime.strftime("%B %d")%>
+	</figcaption>
+	</figure>
+	<figure>
+	<%=image_tag "slider-5.jpg", size: "510x205"%>	
+	<figcaption>
+	  <%= Event.last.title %>
+	   <%= Event.last.venue %>|<%=Event.first.sdatetime.strftime("%B %d")%>
+	</figcaption>
+        </figure>
+  </div>
+		
+	</div>
+	

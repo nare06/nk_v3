@@ -1,0 +1,75 @@
+    <title></title>
+    <!-- Start: MAIN CONTENT -->
+      <div class="container">
+        <div class="page-header">
+          <h1>Set your preferences!</h1>
+        </div>
+              <%= form_for @user,:html => {:class =>"form-horizontal form-signin-signup"} do |f| %>
+               <%= render 'shared/error_messages', :object => f.object %>
+               
+                
+          <div class="col-lg-10">
+             <div class="row">
+     <div class="col-lg-2">
+             
+     
+     <%=f.label :avatar %> 
+     </div>
+     <div class="col-lg-8">
+    <%= f.file_field :avatar %>
+     </div>
+     </div>
+     <div class="row">
+     <div class="col-lg-2">
+      <%=f.label :domain_ids, 'Domains:' %>
+      </div>
+           <div class="col-lg-8">
+      <%= f.collection_check_boxes(:domain_ids, Domain.all, :id, :name) do |b|
+       b.label(class:"btn btn-default btn-xs category") { b.check_box(class: "hide") + b.text }
+                        end %>
+                        </div>
+                </div>
+        <div class="row">
+     <div class="col-lg-2">        
+      <%=f.label :category_ids, 'Categories:' %>
+      </div>
+     <div class="col-lg-8">
+      <%= f.collection_check_boxes(:category_ids, Category.all, :id, :name) do |b|
+                          b.label(class:"btn btn-default btn-xs category") { b.check_box(class: "hide") + b.text }
+                        end %>
+               </div>
+               </div>
+       <div class="row">
+        <div class="col-lg-2">
+             <%=f.label :eligible_ids, 'Eligible:' %>
+         </div>               
+                
+     <div class="col-lg-8">        
+                        <%= f.collection_check_boxes(:eligible_ids, Eligible.all, :id, :name) do |b|
+                          b.label(class:"btn btn-default btn-xs category") { b.check_box(class: "hide") + b.text }
+                        end %>
+                </div>
+              </div>
+              <div class="row">
+        <div class="col-lg-2">
+         <%= f.label :aboutme, "About me" %>
+        </div>
+        <div class="col-lg-8">
+              <%= f.text_area :aboutme, :size => "65x5" %>
+          </div>
+           </div>
+
+              </div>  
+            
+    <%= f.submit "Update", class: "btn btn-large btn-primary" %> 
+          <% end %>
+ 
+</div>
+      <script type="text/javascript" language="javascript" charset="utf-8">
+                        $("input[id*='user_domain_ids'],input[id*='user_category_ids'],input[id*='user_eligible_ids']").each(function(){
+                                if($(this).prop('checked')){
+                                        $(this).parent().removeClass('btn-default');
+                                        $(this).parent().addClass('btn-info');
+                                }
+                        });                </script>
+    <!-- End: MAIN CONTENT -->

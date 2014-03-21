@@ -1,0 +1,52 @@
+<div class="container">
+ <div class="col-lg-2">
+    <br>
+
+  
+    <div class="list-group">
+  <a href="<%= sort_path(:num => 0)%>" class="list-group-item">
+    Today
+  </a>
+  <a href="<%=sort_path(:num => 1)%>" class="list-group-item">Tomorrow
+  </a>
+  <a href="<%=sort_path(:week => 7)%>" class="list-group-item">This Week
+  </a>
+  <a href="<%=sort_path(:month => 7)%>" class="list-group-item">This Month
+  </a>
+ 
+</div>
+<div class="well">
+<legend>Filter by Date</legend>
+<%= form_tag sort_path, :method => :get do %>
+ <%= select_date(date = Date.current, order: [:day, :month, :year]) %>
+<%=submit_tag ">"%>
+
+   <% end %>
+
+   </div>
+   <div class="well">
+<legend>Filter by </legend>
+<%= form_tag refresh_path, :method => :get do %>
+<div class="form-group">
+   <%= select("category", "category_id",Category.all.collect {|p| [ p.name, p.id ] }, {include_blank: 'Fill Category'},{class: "form-control"}) %>
+   
+   <%= select("domain", "domain_id", Domain.all.collect {|p| [ p.name, p.id ] }, {include_blank: 'Fill Domain'},{class: "form-control"}) %>
+   
+   <%= select("eligible", "eligible_id", Eligible.all.collect {|p| [ p.name, p.id ] }, {include_blank: 'Fill Eligible'},{class: "form-control"}) %>
+   
+   <%=submit_tag "Search"%>
+   <% end %> 
+   </div>
+   </div>
+</div>
+<div class="col-lg-10">
+   
+  <legend>Filtered by: <%= "Oops! No Events!" if @all.blank?%><a class="label label-success"><%= @cat.name if @cat.present? %> </a><a class="label label-primary"><%= @dom.name if @dom.present? %></a><a class="label label-info"> <%= @eli.name if @eli.present? %></a></legend>
+<%= render partial: "static_pages/event", collection: @all %>
+</div>
+</div>
+   <script type="text/javascript" language="javascript" charset="utf-8">
+   // <![CDATA[
+          $('[data-toggle="popover"]').popover({trigger: 'hover'});
+   // ]]>
+   </script> 

@@ -1,0 +1,54 @@
+<div class="container">
+<div class="row">
+<div class="col-lg-4">
+</div>
+<div class="col-lg-5">
+
+<%= form_for @contact_form, :class => 'form-horizontal', :url => contact_forms_path do |form| %>
+    
+  <fieldset>
+      <legend>Write to us </legend><br>
+      <%= form.label :name,"Subject" %>
+      <%= form.text_field :name,class: 'form-control', value: "Feedback:", readonly: "readonly" %><br>
+     <input type="button" value="Feedback" id="button1" />
+      <input type="button" value="Bug" id="button2" />
+      <input type="button" value="Want to work with us?" id="button3" />
+      <br>
+      <%= form.label :email %>
+      <%= form.text_field :email,class: 'form-control',placeholder: "To get back to you" %>
+     
+            
+      <%= form.label :feedback, "Feedback/ Write to us" %>
+      <%= form.text_area :feedback,class: 'form-control' %>
+
+
+    <%= form.submit "Send",class: 'btn btn-primary' %>
+ 
+  </fieldset>
+   <% end %>
+</div>
+<div class="col-lg-4">
+</div>  
+
+</div>
+</div>
+<script>
+$(function () {
+    $('#button1').on('click', function () {
+        var text = $('#feedback_name');
+        text.val('Feedback: ');    
+    });
+});
+$(function () {
+    $('#button2').on('click', function () {
+        var text = $('#feedback_name');
+        text.val('Bug Report: ');    
+    });
+});
+$(function () {
+    $('#button3').on('click', function () {
+        var text = $('#feedback_name');
+        text.val('Hey wassup!');    
+    });
+});
+</script>

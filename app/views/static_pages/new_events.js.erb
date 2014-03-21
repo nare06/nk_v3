@@ -1,0 +1,2 @@
+created_at = <%= Time.now.to_i %>;
+$("#sixth").prepend("<%= escape_javascript(render partial:'static_pages/feed', collection: @events) %>"); 

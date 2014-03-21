@@ -1,0 +1,47 @@
+<title></title> 
+  <div class="container" class="clearfix">
+    <div class="well" class="clearfix">
+    <legend><%= @user.name %></legend>
+    <div class="row">   
+       <div class="col-lg-4">
+            
+                        <% if @user.avatar.present?%>
+                        <%= image_tag @user.avatar.url, :size => '150x150' %>
+                        <% else %>
+                        <%= image_tag 'thumb_default.png', :size => '150x150' %>
+                        <% end %>
+                        <%= render 'shared/stats' %>               		
+                        <p><%= render 'follow_form' if signed_in?%> </p>                          
+                        
+                    </div>              
+           
+            <div class="col-lg-3">
+          
+   <strong> Name </strong> <%=@user.name %><br>
+     <strong> URL </strong> <%= link_to user_path(@user), @user %> 
+     <strong> Microposts </strong> <%= @user.microposts.count %>
+     <a class="label label-primary">NewBee <span class="badge"><%=@user.events.count %></span></a> 
+        </div>
+          <div class="col-lg-5">
+             <b> About Me:</b>
+             <%=@user.aboutme%>
+          </div>
+	 </div>
+	
+	</div>
+	<div class="well">
+	<div class="row">
+	<div class="col-lg-8">	
+	 <% unless @user.microposts.empty? %>  
+      <%= render 'microposts/microposts' %>
+    <%= will_paginate @microposts %>
+   <% end %>
+   </div>
+   <div class="col-lg-4">
+   <% if current_user.id == @user.id %>
+       <%= render 'shared/micropost_form' %> 
+       <%end%>
+       </div>
+  </div>
+</div>	  
+</div>

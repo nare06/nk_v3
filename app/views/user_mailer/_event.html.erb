@@ -1,0 +1,22 @@
+
+ <table class ="table table-striped table-hover">
+ <tbody>
+        <tr>        
+         <td width="60%"><div><%= link_to event.title,event_url(event),{:style => 'color: #0F90BA;font-style: italic;font-size: 19px;'} %> Organized by <%=event.organizer%> </div><table class ="table table-striped table-hover"><tbody><tr><td width="10%"><b>When</b></td><td colspan="3" width="50%"><%=event.sdatetime.strftime("%B %d,%Y %I:%M %p")%><em> to </em><%=event.edatetime.strftime("%B %d,%Y %I:%M %p")%></td></tr><tr><td width="10%"><b>Where</b></td><td width="50%"><%=event.venue%>,<%=event.location%></td></tr></tbody></table></td>                 
+                 </tr>
+                 <tr><td colspan="3">Event Tags: <% event.categories.each do |d| %> 
+          |<%= d.name%>|    
+          <% end %>
+          <% event.domains.each do |d| %> 
+           |<%= d.name%>|
+          <% end %>
+         <% event.eligibles.each do |d| %> 
+          |<%= d.name%>|  
+          <% end %></td></tr>
+   <tr><td colspan="3" bgcolor="#e9e9e9"></td></tr>
+                 </tbody>
+                 </table>  
+              
+  
+               </div>
+               

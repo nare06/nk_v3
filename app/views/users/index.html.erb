@@ -1,0 +1,54 @@
+  <title></title>
+   <div class="container" class="clearfix">
+    
+<h1>All users</h1>
+
+  <% @users.each do |user| %>
+    <div class="well" class="clearfix">
+    <div class="row" >
+		<div class="col-lg-3">
+            
+                      
+                        <% if user.avatar.present?%>
+                        <%= image_tag user.avatar.url, :size => '150x150' %>
+                        <% else %>
+                        <%= image_tag 'thumb_default.png', :size => '150x150' %>
+                        <% end %>
+                   </div>
+                    
+                    <div class="col-lg-3">
+                        <h4><%= user.name %></h4>   
+                        <%= render 'shared/stats' %>
+                		
+                        <p>
+                            <%@user = user%>
+                            <%= render 'follow_form' if signed_in?%>
+                           
+                        </p>
+                    </div>
+                
+                <div class="col-lg-2">
+          
+   <b> Name </b> <%=user.name %><br>
+     <b> URL </b> <%= link_to user_path(user), user %> 
+     <b> Microposts </b> <%= user.microposts.count %><br>
+     <% b = user.events.count %>
+       <% if b > 10 %>
+     <a class="label label-primary"> KingBee <span class="badge"><%= b %></span></a>  
+     <% else %>
+            <a class="label label-primary">NewBee <span class="badge"><%= b %></span></a>  
+       <% end %>     
+        </div>
+        <div class="col-lg-4">
+             <b> About: </b>
+          </div>
+                </div>
+                
+            </div>
+     
+
+	  <% end %>
+	  <%= will_paginate @users %>
+
+   </div>
+

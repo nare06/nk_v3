@@ -1,0 +1,13 @@
+<li>
+   <% if user.avatar.present?%>
+                        
+                        <%= image_tag user.avatar.url, :size => '30x30' %>
+                        <% else %>
+                        
+                        <%= image_tag 'thumb_default.png', :size => '30x30' %>
+                        <% end %>
+   <%= link_to user.name, user %>
+   <% if current_user.admin? %>
+     <%= link_to "delete", user, :method => :delete, :confirm => "you sure?", :title => "Delete #{user.name}" %>
+   <% end %>
+</li>

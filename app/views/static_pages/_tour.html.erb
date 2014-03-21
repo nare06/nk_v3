@@ -1,0 +1,107 @@
+<title></title>
+
+
+
+		<%= javascript_include_tag "jquery.easing.1.3.js" %> 
+		<%= javascript_include_tag "jquery.storage.js" %>
+		<%= javascript_include_tag "jquery.tour.js" %>
+		<script type="text/javascript">
+
+        if(!(jQuery.Storage.get("tour") == "true")){
+        	var config = {
+        	    mainTitle: "First time here?!",
+        	    saveCookie: true, 
+        		steps: [
+        		{
+					"name" 		: "tour_1",
+					"bgcolor"	: "black",
+					"color"		: "white",
+					"position"	: "TL",
+					"text"		: "Want to stay informed about the events happening inside the campus? Well! We bring to you the event management platform that let's you browse through what's hot inside. User can set up event preferences, social alerts and can promote events too. A bee score will be set to each event.",
+					"time" 		: 5000
+				},
+				{
+					"name" 		: "tour_2",
+					"bgcolor"	: "black",
+					"color"		: "white",
+					"text"		: "You can check out all active events on campus here. You can tab through! Trending - will have events sorted based on event bee score. Well! What is beescore?",
+					"position"	: "BL",
+					"time" 		: 5000
+				},
+				{
+					"name" 		: "tour_3",
+					"bgcolor"	: "black",
+					"color"		: "white",
+					"text"		: "Bee it! - Kampusbee's way of promoting an event. It updates beescore. Each promotion by a user, adds on to the bee score",
+					"position"	: "BL",
+					"time" 		: 5000
+				},
+				{
+					"name" 		: "tour_4",
+					"bgcolor"	: "black",
+					"color"		: "white",
+					"text"		: "Check out the bee score here! If it says '2'-it means two users have promoted this event",
+					"position"	: "BL",
+					"time" 		: 5000
+				},
+				{
+					"name" 		: "tour_5",
+					"bgcolor"	: "black",
+					"color"		: "white",
+					"text"		: "Set up your social alerts by a single click!",
+					"position"	: "BL",
+					"time" 		: 5000
+				},
+				{
+					"name" 		: "tour_6",
+					"bgcolor"	: "#111199",
+					"color"		: "white",
+					"text"		: "Hover over to know about the brief event description. Event tweet! a 140 character long description of the event ",
+					"position"	: "BL",
+					"time" 		: 5000
+				},
+				{
+					"name" 		: "tour_7",
+					"bgcolor"	: "black",
+					"color"		: "white",
+					"text"		: "Favorite the event by clicking the star!",
+					"position"	: "BL",
+					"time" 		: 5000
+				},
+				
+				{
+					"name" 		: "tour_8",
+					"bgcolor"	: "black",
+					"color"		: "white",
+					"text"		: "Filter and view events as per your choice here!",
+					"position"	: "BL",
+					"time" 		: 5000
+				},
+				{
+					"name" 		: "tour_9",
+					"bgcolor"	: "black",
+					"color"		: "white",
+					"text"		: "Check out the featured events here! You can even close the events for easy readability.",
+					"position"	: "BL",
+					"time" 		: 5000
+				},
+				{
+					"name" 		: "tour_10",
+					"bgcolor"	: "black",
+					"color"		: "white",
+					"text"		: "Don't forget to give your feedback! We greatly appreciate it!",
+					"position"	: "BL",
+					"time" 		: 5000
+				}
+				]
+				
+				
+				
+        	};
+
+        	$.tour.start(config);
+
+        }
+
+        </script>
+		

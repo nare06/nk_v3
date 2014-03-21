@@ -1,0 +1,238 @@
+<title></title>	
+
+     <%= stylesheet_link_tag "jquery.datetimepicker.css" %>	
+     <%= javascript_include_tag "jquery.datetimepicker.js" %>
+                  <%= javascript_include_tag "test.js" %>
+           				
+      <div class="container" style="width:1170px">	
+      <!-- END SIDEBAR -->
+      
+        <ul class="breadcrumb">
+            <li> <i class="icon-home"></i> <a href="#">Home</a> 
+            <span class="divider">/</span> </li>
+            <li><a href="#">Events</a> <span class="divider">/</span></li>
+            <li>Add Event</li>
+          </ul>
+              <div class="well">
+                  <%= form_for @event,:html => {:novalidate =>'novalidate'} do |u| %>
+                  <fieldset>                
+                  <span class="label label-primary">Add Details</span>
+                   <span class="label label-default">Preview</span>
+                  <span class="label label-default">Submit for Moderation</span>
+                  <span class="label label-default">Pending for Moderation</span>
+                  <legend><h3>Event Form</h3>
+                   </legend>
+                  <%= render 'shared/error_messages', :object => u.object %>  
+             <br>
+             <br>
+             <div class="row">
+              <div class="col-lg-6">
+                    <div id="form-group"> 
+                      <!--Competition Title-->
+                
+               <label class="col-lg-3 control-label">Event Title</label>
+                        
+                        <div class="col-lg-9">
+<%= u.text_field :title, autocomplete: 'off',class: 'form-control' %>
+                        </div>
+                       </div>        
+                      <!--Festivals-->
+                <!----      <div id="form-group">                  
+                          <label class="col-lg-3 control-label">Festival <span>(If any)</span></label>
+                      <div class="col-lg-9">
+                         <input validateon="blur" autocomplete="off" class="form-control" id="url" name="url" tabindex="2" type="text">
+   </div>
+   </div>
+   
+                      <!--Organizers-->
+                       <div id="form-group">
+                          <label class="col-lg-3 control-label">Organizer</label>
+                     <div class="col-lg-9">
+                        
+                          <%= u.text_field :organizer, autocomplete: 'off',class: 'form-control' %>
+                        </div>
+                      
+                      </div>
+                      
+                      <!--Website URL-->
+                     
+                      <div id="form-group">
+                          <label class="col-lg-3 control-label">Venue</label>
+                     <div class="col-lg-9">
+                        
+                          <%= u.text_field :venue, autocomplete: 'off',class: 'form-control',:placeholder => 'Building,room no. etc.' %>
+                        </div>
+                      
+                      </div>
+   <div id="form-group">
+                         
+            <label class="col-lg-3 control-label">Location</label>
+                        <div class="col-lg-9">
+                          <%= u.text_field :location, autocomplete: 'off',class: 'form-control',:placeholder => 'place'  %>
+                        </div>
+                      </div> 
+                      <!--Start date and end date-->
+                      <div id="form-group">
+                         
+                          <label class="col-lg-3 control-label">Event From<br> To</label>
+                       <div class="col-lg-9">
+                 <%= u.datetime_field :sdatetime, readonly: 'readonly',class: 'form-control',placeholder: 'From' %> 
+                 <%= u.datetime_field :edatetime, readonly: 'readonly',class: 'form-control', placeholder: 'To' %>  
+                        </div>
+                        </div>
+                        </br>
+                         <div id="form-group">
+                         
+                          <label class="col-lg-3 control-label">Website</label>
+                          
+                        <div class="col-lg-9">
+                         <%= u.url_field :web,class: 'form-control' %><br>
+                        </div>
+                     
+                      </div>
+                      <br>
+                  <div id="form-group">
+                         
+             <label class="col-lg-3 control-label">Short Event Description</label>
+                        <div class="col-lg-9">
+                        
+                 <%= u.text_area :short_description,class: 'form-control',placeholder: "max. 140 characters." %>   
+                <div id='counter'>140</div>
+                        </div>
+                        </div>
+                        <div id="form-group">
+                         
+                          <label for="url" class="col-lg-3 control-label">Contact Details</label>
+                        <div class="col-lg-9 widthLong">
+                        <%= u.text_field :contact_name,class: 'form-control',placeholder: 'Name' %>
+                        <%= u.text_field :contact_phone,class: 'form-control',placeholder: 'mobile no.' %>
+                        <%= u.email_field :email,class: 'form-control',placeholder:'Email Id' %>
+                          </div>
+                        </div> 
+                         
+                         <div id="form-group">
+                         
+                          <label for="url" class="col-lg-3 control-label">Region</label>
+                    
+                        <div class="col-lg-9">
+                          <label style="float:left;padding:8px 20px 8px 0;font-size:14px;" class="col-lg-3 control-label" >
+                            <input name="region" value="india" id="region_india" checked="checked" tabindex="2" type="radio">
+                            India</label>
+                          
+                           
+                        </div>
+                    
+                      </div>
+                      <div id="form-group">
+                         
+                          <label class="col-lg-3 control-label">Event Logo</label>
+                        <div class="col-lg-9">
+                        <%= u.file_field :avatar %> 
+                      </div>
+                      </div>
+                      </div>
+                      <!--Location-->
+                      
+                <div class="col-lg-6">       
+                          
+                      <!--Domains--><div id="form-group">
+                         <br>
+                          <label class="col-lg-3 control-label">Event Reach</label>
+                       
+                        <div class="col-lg-9">
+         <%= u.collection_select(:reach_id, Reach.all, :id,:name,include_blank: "Choose") do |b|
+                          b.label(class:"btn btn-default category") { b.check_box(class: "hide") + b.text } end %>  
+                        <!%=link_to"Add your own event reach",rails_admin.new_path('Reach'),target: '_blank' %> 
+                        </div>
+                        
+                      </div>
+                     <br>
+                      
+                      <div id="form-group">
+                         <br>
+                          <label class="col-lg-2 control-label">Domains</label>
+                       
+                        <div class="col-lg-10">
+       <%= u.collection_check_boxes(:domain_ids, Domain.all, :id, :name) do |b|
+          b.label(class:"btn btn-default category") { b.check_box(class: "hide") + b.text }
+                        end %>
+                <%=link_to"Add a new Domain",rails_admin.new_path('Domain'),target: '_blank' %>        
+                        </div>
+                        
+                      </div>
+                     <br>
+                      <!--Categories-->
+                      <div id="form-group">
+                      <br>
+                          <label class="col-lg-2 control-label">Categories</label>
+                        <div class="col-lg-10">
+               <%= u.collection_check_boxes(:category_ids, Category.all, :id, :name) do |b|
+                          b.label(class:"btn btn-default category") { b.check_box(class: "hide") + b.text }
+                        end %>
+                        <%=link_to"Add a new Category",rails_admin.new_path('Category'),target: '_blank' %> 
+                        </div>
+                      </div>
+                      <br>
+                      <!--Eligibility-->
+                      <div id="form-group">
+                         <br>
+                          <label class="col-lg-2 control-label">Eligibility</label>
+                        <div class="col-lg-10">
+                        <%= u.collection_check_boxes(:eligible_ids, Eligible.all, :id, :name) do |b|
+                          b.label(class:"btn btn-default category") { b.check_box(class: "hide") + b.text }
+                        end %>
+                         <%=link_to"Add a new Eligible Criteria",rails_admin.new_path('Eligible'),target: '_blank' %>
+                        <br>
+                       </div>                                                
+                      </div>
+			</div>	
+			  
+                       <!--Competitions Registration URL-->
+ 
+                      <!--Competitions Details-->
+                     
+                    <div class ="col-lg-9">
+                     <div id="form-group">
+                         
+                          <label class="col-lg-2 control-label">Event Details<br>(For Event Page)</label>
+                          
+                        <div class="col-lg-10">
+                          <%= u.cktext_area :events_description, :class => 'ckeditor',style: 'width: 80%;height: 200px' %>
+                          
+                        </div>  
+                      </div>
+                      </div>
+                      <div class="col-lg-3">
+                      <br>
+                      <br><br>
+                      <%=u.submit 'Submit Event', class:'btn btn-primary btn-md',type: 'submit' %><br>
+                      <%=u.submit'Reset', class:'btn btn-danger btn-md',type: 'reset' %> 
+                      </div>
+                      </div>
+                      
+                       </div> 
+                      
+                      <!--Attachments-->
+                      
+                      <!--Deadlines-->
+                        
+                      </div>                    
+                     </fieldset>   
+                  <% end %>
+                  
+                  </div>
+      
+                </div>
+                </div>
+                </div>
+              <script type="text/javascript" language="javascript" charset="utf-8">
+                        $("input[id*='event_domain_ids'],input[id*='event_category_ids'],input[id*='event_eligible_ids']").each(function(){
+                                if($(this).prop('checked')){
+                                        $(this).parent().removeClass('btn-default');
+                                        $(this).parent().addClass('btn-info');
+                                }
+                        });                </script>
+                        
+    <script type="text/javascript" language="javascript" charset="utf-8">
+   (function($){$.fn.limiter=function(options){var that=this;options=$.extend({limit:140,counter:$('#counter')},options);var count=function(value,e){var total=options.limit-value.length;if(total>=0){options.counter.text(total)}else{if(e.type=='keypress'){e.preventDefault()}}};return that.each(function(){$(that).on('keypress keyup',function(evt){count($(that).val(),evt)})})}})(jQuery);$('#event_short_description').limiter();
+                        </script>                     

@@ -1,0 +1,62 @@
+<title></title>
+<div class="alert alert-dismissable alert-warning eventspc">
+      <button type="button" class="close" data-dismiss="alert"> X </button>
+        <table class ="table table-striped table-hover eventspc" style="
+    table-layout: fixed;">
+        <tbody>
+        <tr>
+        <!-------------------first column---------->
+        <td width="7%">
+        <%if event.avatar.present?%>
+        <%= image_tag event.avatar.url, size: "150x75"%>
+        <% else %>
+        <%= image_tag 'logo1.png', size: "150x75"%>
+       <% end %>
+       <br>
+       
+  <button type="button" class="btn btn-primary btn-xs btn-block"><%= event.reach.name if event.reach.present? %></button> 
+        </td>
+                <!-------------------second column---------->
+         <td width="30%"><div style="word-wrap: break-word;">
+    
+    <%= link_to event.title,event,{:style => 'font-family: Omnes-Pro,Omnes,"Helvetica Neue",Helvetica,Arial,sans-serif;color: rgb(24, 188, 156);font-style: italic;font-size: 23px;'} %> <br> Organized by : <%=event.organizer%> 
+    
+     <button type="button" class="btn btn-default btn-xs" data-container="body" data-toggle="popover" data-placement="top" data-content="<%=event.short_description%>" data-original-title="" title="" style="float: right;"><div class="tour_5"></div>What!?</button>
+     </div>
+    <table class ="table table-striped table-hover eventspc" style="
+    table-layout: fixed;">
+    <tbody>
+    <tr>
+    <td class="eventrow1">
+    <b>When</b></td>
+            <!-------------------thrid column---------->
+    <td class="eventrow2"><%=event.sdatetime.strftime("%d %b %I:%M %p")%> - <%=event.edatetime.strftime("%d %b %I:%M %p")%></td></tr>
+    <tr><td class="eventrow1"><b>Where</b></td><td class="eventrow2">
+    <%=event.venue%>,<%=event.location%>
+    </td></tr>
+    <tr><td colspan="2">  
+    <div class="tour_7"> </div>
+  <% event.categories.each do |d| %> 
+           <a class="label label-primary"><%= d.name%></a>    
+          <% end %>
+          <% event.domains.each do |d| %> 
+           <a class="label label-success"><%= d.name%></a>    
+          <% end %>
+         <% event.eligibles.each do |d| %> 
+           <a class="label label-default"><%= d.name%></a>    
+          <% end %></td></tr></tbody></table><div></div></td>
+         <td class = "aRi" width="20%"> 
+         <div class="aU5"><span class="aRh"><%=event.sdatetime.strftime("%b") %></span><span class="aRg"><%=event.sdatetime.day %></span><span class="aRj"><%=event.sdatetime.strftime("%a") %></span></div>
+       
+         <%= link_to "Accept", approve_path(:id => event.id,:state => "accept"), class: "btn btn-success btn-sm"%>
+              <%= link_to "Reject", approve_path(:id => event.id,:state => "reject" ), class: "btn btn-danger btn-sm" %>
+     
+         </td>                   
+  </tr>
+          <!-------------------final top  column---------->
+ 
+                 </tbody>
+                 </table>  
+               
+               </div>
+           
