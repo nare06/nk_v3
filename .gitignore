@@ -18,6 +18,7 @@
 .env
 #/config/secrets/*
 /config/rubber/rubber.yml
-
+/config/rubber/rubber-dns.yml
+/config/rubber/instance-production.yml
 # Ignore application configuration
 /config/application.yml
